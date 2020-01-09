@@ -1,0 +1,27 @@
+<div class="container">
+    <section>
+        <h2>Where are you going?</h2>
+        <div class="search-wrap">
+            <label>Pick up location</label>
+            <bg-input>
+                <input type="text" #searchLocation name="searchLocation"
+                    placeholder="city, airport, station, region, district..."
+                    title="Pick up location"
+                    aria-label="city, airport, station, region, district..." />
+            </bg-input>
+            <ng-container *ngIf="listOfLocations">
+                <ng-template ngFor [ngForOf]="listOfLocations" let-location let-lid="index">
+                    <button class="locationResult" [id]="id + '-' + lid" (click)="logSelected(location)">
+                        {{location.placeType | location}} {{location.name}} <ng-template *ngIf="location.iata">
+                            ({{location.iata}})</ng-template>
+                        <br />
+                        {{location | address}}
+                    </button>
+                </ng-template>
+            </ng-container>
+            <ng-container *ngIf="noResults">
+                <span>No results found</span>
+            </ng-container>
+        </div>
+    </section>
+</div>
