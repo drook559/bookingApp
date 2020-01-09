@@ -25,7 +25,6 @@ export class LocationSearchComponent implements AfterViewInit {
 
         results$.subscribe({
             next: (data: any) => {
-                console.log(data);
                 if (!data) {
                     this.listOfLocations = null;
                     this.setNoResults(false);
